@@ -9,7 +9,12 @@
  */
 angular.module('moneyManagerApp')
   .controller('RecordsCtrl', function ($scope) {
-    $scope.records = [];
+    if (localStorage.getItem('moneyManagerRecords')) {
+      console.log(localStorage.getItem('moneyManagerRecords'));
+      $scope.records = JSON.parse(localStorage.getItem('moneyManagerRecords'));
+    } else {
+      $scope.records = [];
+    }
     $scope.draftRecord = {};
 
     // Functions for saving and updating records
@@ -22,4 +27,9 @@ angular.module('moneyManagerApp')
         $scope.draftRecord = {};
       }
     };
+
+    $scope.$watch('records', function (newValue, oldValue) {
+      console.log('# Saving moneyManagerRecords');
+      localStorage.setItem('moneyManagerRecords', JSON.stringify(newValue));
+    }, true);
   });
