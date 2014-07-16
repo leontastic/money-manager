@@ -1,7 +1,24 @@
 <div class="row">
   <div class="col-sm-8">
-    <p>{{records}}</p>
-    <p>{{draftRecord}}</p>
+    <h1>All Records</h1>
+    <table class="table">
+      <tr>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Source</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Notes</th>
+      </tr>
+      <tr ng-repeat="record in records track by $index" ng-class="{warning: record.recordType == 'expense', info: record.recordType == 'income'}">
+        <td>{{record.recordType | uppercase}}</td>
+        <td>{{record.date}}</td>
+        <td>{{record.source}}</td>
+        <td>{{record.amount}}</td>
+        <td>{{record.description}}</td>
+        <td>{{record.notes}}</td>
+      </tr>
+    </table>
   </div>
   <div class="col-sm-4">
       <h2>Add record</h2>
