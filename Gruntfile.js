@@ -113,6 +113,7 @@ module.exports = function (grunt) {
     // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
       options: {
+        node: true,
         jshintrc: '.jshintrc',
         reporter: require('jshint-stylish')
       },
