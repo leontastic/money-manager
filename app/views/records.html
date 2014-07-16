@@ -1,1 +1,39 @@
-<p>This is the records view.</p>
+<div class="row">
+  <div class="col-sm-8">
+    <p>{{records}}</p>
+    <p>{{draftRecord}}</p>
+  </div>
+  <div class="col-sm-4">
+      <h2>Add record</h2>
+      <div class="form-group btn-group btn-group-justified">
+        <a class="btn btn-success" ng-click="recordFunction.chooseType('expense')" ng-class="{active: draftRecord.recordType == 'expense'}">Expense</a>
+        <a class="btn btn-success" ng-click="recordFunction.chooseType('income')" ng-class="{active: draftRecord.recordType == 'income'}">Income</a>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-12">
+          <input type="text" class="form-control" placeholder="Description" ng-model="draftRecord.description">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-12">
+          <input type="text" class="form-control" placeholder="Source" ng-model="draftRecord.source">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-12">
+          <input type="date" class="form-control" ng-model="draftRecord.date">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-12">
+          <input type="number" class="form-control" placeholder="Amount ($)" ng-model="draftRecord.amount">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-12">
+          <textarea class="form-control" rows="4" placeholder="Notes" ng-model="draftRecord.notes"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success btn-block" ng-click="recordFunction.saveRecord()">Submit</button>
+  </div>
+</div>

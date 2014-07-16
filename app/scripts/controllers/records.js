@@ -9,4 +9,17 @@
  */
 angular.module('moneyManagerApp')
   .controller('RecordsCtrl', function ($scope) {
+    $scope.records = [];
+    $scope.draftRecord = {};
+
+    // Functions for saving and updating records
+    $scope.recordFunction = {
+      chooseType: function (type) {
+        $scope.draftRecord.recordType = type;
+      },
+      saveRecord: function () {
+        $scope.records.push($scope.draftRecord);
+        $scope.draftRecord = {};
+      }
+    };
   });
