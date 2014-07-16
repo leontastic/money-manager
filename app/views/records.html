@@ -1,6 +1,10 @@
 <div class="row">
-  <div class="col-sm-8">
-    <h1>All Records</h1>
+  <div class="col-sm-12">
+    <h1>All Records
+      <button class="btn btn-success pull-right" data-toggle="modal" data-target="#newRecordModal">
+        <span class="glyphicon glyphicon-plus"></span> Add record
+      </button>
+    </h1>
     <table class="table">
       <tr>
         <th>Type</th>
@@ -20,37 +24,48 @@
       </tr>
     </table>
   </div>
-  <div class="col-sm-4">
-      <h2>Add record</h2>
-      <div class="form-group btn-group btn-group-justified">
-        <a class="btn btn-success" ng-click="recordFunction.chooseType('expense')" ng-class="{active: draftRecord.recordType == 'expense'}">Expense</a>
-        <a class="btn btn-success" ng-click="recordFunction.chooseType('income')" ng-class="{active: draftRecord.recordType == 'income'}">Income</a>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-12">
-          <input type="text" class="form-control" placeholder="Source" ng-model="draftRecord.source">
+  <div class="modal fade" id="newRecordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add record</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group btn-group btn-group-justified">
+            <a class="btn btn-success" ng-click="recordFunction.chooseType('expense')" ng-class="{active: draftRecord.recordType == 'expense'}">Expense</a>
+            <a class="btn btn-success" ng-click="recordFunction.chooseType('income')" ng-class="{active: draftRecord.recordType == 'income'}">Income</a>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <input type="text" class="form-control" placeholder="Source" ng-model="draftRecord.source">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <input type="date" class="form-control" ng-model="draftRecord.date">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <input type="number" class="form-control" placeholder="Amount ($)" ng-model="draftRecord.amount">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <input type="text" class="form-control" placeholder="Description" ng-model="draftRecord.description">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <textarea class="form-control" rows="4" placeholder="Notes" ng-model="draftRecord.notes"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success btn-block" ng-click="recordFunction.saveRecord()" data-dismiss="modal">Submit</button>
         </div>
       </div>
-      <div class="row">
-        <div class="form-group col-md-12">
-          <input type="date" class="form-control" ng-model="draftRecord.date">
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-12">
-          <input type="number" class="form-control" placeholder="Amount ($)" ng-model="draftRecord.amount">
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-12">
-          <input type="text" class="form-control" placeholder="Description" ng-model="draftRecord.description">
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-12">
-          <textarea class="form-control" rows="4" placeholder="Notes" ng-model="draftRecord.notes"></textarea>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-success btn-block" ng-click="recordFunction.saveRecord()">Submit</button>
+    </div>
   </div>
 </div>
