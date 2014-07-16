@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc function
- * @name moneyManagerApp.controller:MainCtrl
+ * @name moneyManagerApp.controller:BudgetCtrl
  * @description
- * # MainCtrl
+ * # BudgetCtrl
  * Controller of the moneyManagerApp
  */
 angular.module('moneyManagerApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('BudgetCtrl', function ($scope) {
   });
