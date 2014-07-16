@@ -9,6 +9,7 @@
  */
 angular.module('moneyManagerApp')
   .controller('RecordsCtrl', function ($scope) {
+    // Initialize scope variables
     if (localStorage.getItem('moneyManagerRecords')) {
       console.log(localStorage.getItem('moneyManagerRecords'));
       $scope.records = JSON.parse(localStorage.getItem('moneyManagerRecords'));
@@ -25,10 +26,16 @@ angular.module('moneyManagerApp')
       saveRecord: function () {
         $scope.records.push($scope.draftRecord);
         $scope.draftRecord = {};
+      },
+      currentRecordIndex: function (index) {
+        $scope.currentRecordIndex = index;
+      },
+      deleteRecord: function (index) {
+        $scope.records.splice(index, 1);
       }
     };
 
-    $scope.$watch('records', function (newValue, oldValue) {
+    $scope.$watch('records', function (newValue) {
       console.log('# Saving moneyManagerRecords');
       localStorage.setItem('moneyManagerRecords', JSON.stringify(newValue));
     }, true);

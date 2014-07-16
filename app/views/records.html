@@ -1,4 +1,5 @@
 <div class="row">
+
   <div class="col-sm-12">
     <h1>All Records
       <button class="btn btn-success pull-right" data-toggle="modal" data-target="#newRecordModal">
@@ -13,18 +14,25 @@
         <th>Amount</th>
         <th>Description</th>
         <th>Notes</th>
+        <th></th>
       </tr>
       <tr ng-repeat="record in records track by $index" ng-class="{warning: record.recordType == 'expense', info: record.recordType == 'income'}">
         <td>{{record.recordType | uppercase}}</td>
-        <td>{{record.date}}</td>
+        <td>{{record.date | date : mediumDate}}</td>
         <td>{{record.source}}</td>
-        <td>{{record.amount}}</td>
+        <td>{{record.amount | number : 2}}</td>
         <td>{{record.description}}</td>
         <td>{{record.notes}}</td>
+        <td>
+          <button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#removeRecordModal" ng-click="recordFunction.currentRecordIndex($index)">
+            <span class="glyphicon glyphicon-remove"></span> Remove
+          </button>
+        </td>
       </tr>
     </table>
   </div>
-  <div class="modal fade" id="newRecordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal fade" id="newRecordModal" tabindex="-1">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
@@ -68,4 +76,39 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="removeRecordModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Remove record</h4>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-danger" role="alert">Are you sure you want to remove this record?</div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{records[currentRecordIndex].description}}</h3>
+            </div>
+            <div class="panel-body">
+              <dl>
+                <dt>Type</dt>
+                <dd>{{records[currentRecordIndex].recordType | uppercase}}</dd>
+                <dt>Date</dt>
+                <dd>{{records[currentRecordIndex].date}}</dd>
+                <dt>Source</dt>
+                <dd>{{records[currentRecordIndex].source}}</dd>
+                <dt>Amount</dt>
+                <dd>{{records[currentRecordIndex].amount}}</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-block" ng-click="recordFunction.deleteRecord(currentRecordIndex)" data-dismiss="modal">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
